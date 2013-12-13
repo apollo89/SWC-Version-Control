@@ -15,6 +15,7 @@ class TimeSeries(object):
     def view(self):
         pass
     
+# Here is a change I made.....
 
 class StepFunctionTimeSeries(TimeSeries):
     def get(self, x):
