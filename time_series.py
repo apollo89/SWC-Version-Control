@@ -1,9 +1,12 @@
 class TimeSeries(object):
+   '''New Class creation - temperature time series'''
     def __init__(self, data):
+	   '''initialize with new data'''
         self.data = data
     
     def get(self, x):
         for (xi,yi) in self.data:
+			'''Searches for x in data'''
             if xi == x:
                 return yi
         
@@ -26,17 +29,21 @@ class StepFunctionTimeSeries(TimeSeries):
             else:
                 cx, cy = closest_point
                 if abs(xi-x) < abs(cx-x):
+					'''Determines closest step'''
                     closest_point = (xi, yi)
         return closest_point[1]
         
 
 
 class LinearTimeSeries(TimeSeries):
+	'''Linear interpolation between points'''
     def __init__(self, data):
         TimeSeries.__init__(self, data)
+			'''Initializes from Parent Class'''
         self.data.sort()
     
     def get(self, x):
+		'''Linear Interpolation'''
         # if it's out of range to the left,
         # return the first value
         if x < self.data[0][0]:
